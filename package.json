@@ -1,0 +1,33 @@
+{
+  "name": "poc-sdk-auth",
+  "version": "1.0.0",
+  "description": "Prova de Conceito de uma SDK que renderiza uma tela de login",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.3",
+    "vite": "^5.4.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/pablowinck/poc-sdk-auth.git"
+  },
+  "keywords": [
+    "poc"
+  ],
+  "author": "Pablo Winck Winter",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pablowinck/poc-sdk-auth/issues"
+  },
+  "homepage": "https://github.com/pablowinck/poc-sdk-auth#readme",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=7.0.0"
+  }
+}
