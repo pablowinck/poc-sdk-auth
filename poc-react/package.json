@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "next": "14.2.8",
-    "poc-sdk-auth": "^1.1.2",
+    "poc-sdk-auth": "^1.1.3",
     "react": "^18",
     "react-dom": "^18"
   },

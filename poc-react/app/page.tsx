@@ -10,6 +10,12 @@ export default function Home() {
       const sdk = module.init({
         environment: "DEV",
         clientToken: "token",
+        themeConfig: {
+          theme: "light",
+          assets: {
+            logo: "https://nextjs.org/icons/next.svg",
+          },
+        },
       });
 
       const component = sdk.renderAutenticacao();
