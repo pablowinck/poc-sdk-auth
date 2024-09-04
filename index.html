@@ -4,10 +4,30 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Vite + TS</title>
   </head>
   <body>
     <div id="aegis-autenticacao"></div>
-    <script type="module" src="/src/main.ts"></script>
+    <!-- Para utilizar é importante rodar o build da aplicação -->
+    <script src="./dist/mfa-sdk.umd.js"></script>
+
+    <script>
+      // A SDK estará disponível no escopo global sob o nome definido, neste caso "MfaSdk"
+      const sdk = MfaSdk.init({
+        environment: "DEV",
+        clientToken: "token-aqui",
+      });
+
+      const componenteLogin = sdk.renderAutenticacao();
+
+      componenteLogin.on("sucesso", () => {
+        alert("Autenticado com sucesso");
+      });
+
+      componenteLogin.on("erro", () => {
+        alert("Usuário ou senha inválido");
+      });
+    </script>
   </body>
 </html>

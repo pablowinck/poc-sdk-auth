@@ -2,14 +2,19 @@
   "name": "poc-sdk-auth",
   "version": "1.0.0",
   "description": "Prova de Conceito de uma SDK que renderiza uma tela de login",
-  "main": "index.js",
+  "main": "dist/mfa-sdk.es.js",
+  "types": "dist/types/index.d.ts",
   "type": "module",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
   "devDependencies": {
+    "terser": "^5.31.6",
     "typescript": "^5.5.3",
     "vite": "^5.4.2"
   },
@@ -31,6 +36,7 @@
     "npm": ">=7.0.0"
   },
   "dependencies": {
-    "lit": "^3.2.0"
+    "lit": "^3.2.0",
+    "vite-plugin-dts": "^4.1.0"
   }
 }

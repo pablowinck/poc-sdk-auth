@@ -97,6 +97,9 @@ export class LoginComponent extends LitElement implements ComponenteLogin {
       padding: 2rem;
       text-align: center;
     }
+    h1 {
+      color: white;
+    }
     .login-form {
       display: flex;
       flex-direction: column;
