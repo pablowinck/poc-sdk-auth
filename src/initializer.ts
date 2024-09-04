@@ -27,6 +27,16 @@ class _ImplMfaSdk implements MfaSdk {
     const container = document.querySelector<HTMLDivElement>(
       _ImplMfaSdk.ID_AUTENTICACAO
     );
+    if (!container) {
+      throw new Error("Container não encontrado");
+    }
+    // Essa tratativa é necessária para evitar re-renderizações desnecessárias
+    // do componente. O React, por exemplo, pode ocorrer facilmente se mal implementado.
+    const componentJaRenderizou =
+      container?.querySelector(login.tagName?.toLowerCase()) !== null;
+    if (componentJaRenderizou) {
+      return login;
+    }
     container!.appendChild(login);
     changeComponentToFullScreen(login);
     return login;
