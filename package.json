@@ -1,6 +1,6 @@
 {
   "name": "poc-sdk-auth",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "Prova de Conceito de uma SDK que renderiza uma tela de login",
   "main": "dist/mfa-sdk.es.js",
   "types": "dist/types/index.d.ts",
@@ -39,7 +39,6 @@
   },
   "dependencies": {
     "lit": "^3.2.0",
-    "poc-sdk-auth": "^1.1.0",
     "vite-plugin-dts": "^4.1.0"
   }
 }
