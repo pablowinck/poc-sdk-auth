@@ -3,6 +3,13 @@ import { changeComponentToFullScreen } from "./utils/change-component-to-full-sc
 
 type MfaSdkEnv = "DEV" | "HML" | "PRD";
 
+interface MfaSdkThemeConfig {
+  theme: string | undefined;
+  assets: {
+    logo: string | undefined;
+  };
+}
+
 interface MfaSdk {
   renderAutenticacao(): LoginComponent;
 }
@@ -10,12 +17,13 @@ interface MfaSdk {
 class _ImplMfaSdk implements MfaSdk {
   environment: MfaSdkEnv | undefined;
   clientToken: string | undefined;
+  themeConfig: MfaSdkThemeConfig | undefined;
   // ...e outras variáveis
   static #nomeProjeto: string = "Aegis";
   static ID_AUTENTICACAO: string = `#${this.#nomeProjeto.toLowerCase()}-autenticacao`;
 
   renderAutenticacao(): LoginComponent {
-    const login = new LoginComponent();
+    const login = new LoginComponent({ logo: this.themeConfig?.assets.logo });
     const container = document.querySelector<HTMLDivElement>(
       _ImplMfaSdk.ID_AUTENTICACAO
     );
@@ -32,11 +40,13 @@ class _ImplMfaSdk implements MfaSdk {
 export function init(config: {
   environment: MfaSdkEnv;
   clientToken: string;
+  themeConfig: MfaSdkThemeConfig;
   // ...e outras variáveis
 }): MfaSdk {
   const sdk = new _ImplMfaSdk();
   sdk.environment = config.environment;
   sdk.clientToken = config.clientToken;
+  sdk.themeConfig = config.themeConfig;
 
   return sdk;
 }

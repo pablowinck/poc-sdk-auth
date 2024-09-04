@@ -17,6 +17,9 @@
       const sdk = MfaSdk.init({
         environment: "DEV",
         clientToken: "token-aqui",
+        themeConfig: {
+          assets: { logo: "https://v4.vitejs.dev/logo.svg" },
+        },
       });
 
       const componenteLogin = sdk.renderAutenticacao();

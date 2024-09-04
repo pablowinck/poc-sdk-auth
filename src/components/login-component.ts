@@ -1,5 +1,5 @@
-import { LitElement, css, html } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { LitElement, TemplateResult, css, html, nothing } from "lit";
+import { customElement, property, state } from "lit/decorators.js";
 
 type LoginHandlerTypes =
   | "sucesso"
@@ -41,13 +41,20 @@ interface ComponenteLogin {
 
 @customElement("login-component")
 export class LoginComponent extends LitElement implements ComponenteLogin {
+  constructor({ logo = "" } = {}) {
+    super();
+    this._logo = logo;
+  }
   @property({ type: String }) username = "";
   @property({ type: String }) password = "";
+
+  @state()
+  private _logo: string = "";
 
   private _handlerSucesso: Function = () => {};
   private _handlerErro: Function = () => {};
 
-  private _login() {
+  private _login(): void {
     console.log(`Username: ${this.username}, Password: ${this.password}`);
     if (this.username == "admin" && this.password == "1234") {
       this._handlerSucesso();
@@ -57,7 +64,7 @@ export class LoginComponent extends LitElement implements ComponenteLogin {
     this._handlerErro();
   }
 
-  public on(event: LoginHandlerTypes, handler: Function) {
+  public on(event: LoginHandlerTypes, handler: Function): void {
     if (event === "sucesso") {
       this._handlerSucesso = handler;
     } else if (event === "erro") {
@@ -65,9 +72,14 @@ export class LoginComponent extends LitElement implements ComponenteLogin {
     }
   }
 
+  private _renderLogo(): TemplateResult<1> | typeof nothing {
+    return this._logo ? html`<img src="${this._logo}" />` : nothing;
+  }
+
   render() {
     return html`
       <main>
+        ${this._renderLogo()}
         <h1>Aegis Login</h1>
         <div class="login-form">
           <input
@@ -98,7 +110,10 @@ export class LoginComponent extends LitElement implements ComponenteLogin {
       text-align: center;
     }
     h1 {
-      color: white;
+      color: var(--mfa-color-neutral-strong, white);
+    }
+    img {
+      width: 80px;
     }
     .login-form {
       display: flex;
