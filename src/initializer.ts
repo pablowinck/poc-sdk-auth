@@ -1,4 +1,5 @@
 import { LoginComponent } from "./components/login-component";
+import { changeComponentToFullScreen } from "./utils/change-component-to-full-screen";
 
 type MfaSdkEnv = "DEV" | "HML" | "PRD";
 
@@ -7,15 +8,19 @@ interface MfaSdk {
 }
 
 class _ImplMfaSdk implements MfaSdk {
-  environment: MfaSdkEnv;
-  clientToken: string;
+  environment: MfaSdkEnv | undefined;
+  clientToken: string | undefined;
   // ...e outras variáveis
+  static #nomeProjeto: string = "Aegis";
+  static ID_AUTENTICACAO: string = `#${this.#nomeProjeto.toLowerCase()}-autenticacao`;
 
   renderAutenticacao(): LoginComponent {
     const login = new LoginComponent();
-    document
-      .querySelector<HTMLDivElement>("#aegis-autenticacao")!
-      .appendChild(login);
+    const container = document.querySelector<HTMLDivElement>(
+      _ImplMfaSdk.ID_AUTENTICACAO
+    );
+    container!.appendChild(login);
+    changeComponentToFullScreen(login);
     return login;
   }
 }

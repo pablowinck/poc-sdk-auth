@@ -1,4 +1,4 @@
-import { LitElement, html, css } from "lit";
+import { LitElement, css, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
 type LoginHandlerTypes =
@@ -67,27 +67,36 @@ export class LoginComponent extends LitElement implements ComponenteLogin {
 
   render() {
     return html`
-      <div class="login-form">
-        <input
-          type="text"
-          placeholder="Username"
-          .value=${this.username}
-          @input=${(e: Event) =>
-            (this.username = (e.target as HTMLInputElement).value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          .value=${this.password}
-          @input=${(e: Event) =>
-            (this.password = (e.target as HTMLInputElement).value)}
-        />
-        <button @click=${this._login}>Login</button>
-      </div>
+      <main>
+        <h1>Aegis Login</h1>
+        <div class="login-form">
+          <input
+            type="text"
+            placeholder="Username"
+            .value=${this.username}
+            @input=${(e: Event) =>
+              (this.username = (e.target as HTMLInputElement).value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            .value=${this.password}
+            @input=${(e: Event) =>
+              (this.password = (e.target as HTMLInputElement).value)}
+          />
+          <button @click=${this._login}>Login</button>
+        </div>
+      </main>
     `;
   }
 
   static styles = css`
+    main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2rem;
+      text-align: center;
+    }
     .login-form {
       display: flex;
       flex-direction: column;
