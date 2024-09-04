@@ -1,18 +1,22 @@
 "use client";
 
 import Image from "next/image";
-import { init } from "poc-sdk-auth";
 import { useEffect } from "react";
 import styles from "./page.module.css";
 
 export default function Home() {
   useEffect(() => {
-    const sdk = init({
-      environment: "DEV",
-      clientToken: "token",
-    });
+    import("poc-sdk-auth").then((module) => {
+      const sdk = module.init({
+        environment: "DEV",
+        clientToken: "token",
+      });
 
-    sdk.renderAutenticacao();
+      const component = sdk.renderAutenticacao();
+      component.on("erro", () => {
+        console.log("Erro ao logar");
+      });
+    });
   }, []);
 
   return (
