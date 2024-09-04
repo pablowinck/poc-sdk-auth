@@ -14,6 +14,12 @@ interface MfaSdk {
   renderAutenticacao(): LoginComponent;
 }
 
+interface ConfigMfaSdk {
+  environment: MfaSdkEnv;
+  clientToken: string;
+  themeConfig: MfaSdkThemeConfig;
+}
+
 class _ImplMfaSdk implements MfaSdk {
   environment: MfaSdkEnv | undefined;
   clientToken: string | undefined;
@@ -47,12 +53,7 @@ class _ImplMfaSdk implements MfaSdk {
  * Inicializa o SDK e retorna um objeto a ser usado para realizar as operações
  * da lib: renderizações e métodos utilitários.
  */
-export function init(config: {
-  environment: MfaSdkEnv;
-  clientToken: string;
-  themeConfig: MfaSdkThemeConfig;
-  // ...e outras variáveis
-}): MfaSdk {
+export function init(config: ConfigMfaSdk): MfaSdk {
   const sdk = new _ImplMfaSdk();
   sdk.environment = config.environment;
   sdk.clientToken = config.clientToken;
