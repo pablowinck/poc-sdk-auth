@@ -64,7 +64,7 @@ Execute `npm run test` para rodar os testes unitários e verificar a integridade
    });
    ```
 
-3. Inclua o container de autenticação no template HTML:
+3. Inclua o container de autenticação no seu HTML:
 
    ```html
    <div id="aegis-autenticacao"></div>
