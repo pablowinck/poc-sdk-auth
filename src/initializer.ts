@@ -29,7 +29,11 @@ class _ImplMfaSdk implements MfaSdk {
   static ID_AUTENTICACAO: string = `#${this.#nomeProjeto.toLowerCase()}-autenticacao`;
 
   renderAutenticacao(): LoginComponent {
-    const login = new LoginComponent({ logo: this.themeConfig?.assets.logo });
+    const { theme, assets } = this.themeConfig as MfaSdkThemeConfig;
+    const login = new LoginComponent({
+      logo: assets.logo,
+      theme,
+    });
     const container = document.querySelector<HTMLDivElement>(
       _ImplMfaSdk.ID_AUTENTICACAO
     );
