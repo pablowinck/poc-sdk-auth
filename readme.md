@@ -31,8 +31,6 @@ Execute `npm run test` para rodar os testes unitários e verificar a integridade
 
 ## Integração
 
-## Integração
-
 ### Vanilla (HTML/JS)
 
 1. Inclua o script gerado no build no seu arquivo HTML.
@@ -41,13 +39,9 @@ Execute `npm run test` para rodar os testes unitários e verificar a integridade
    <script src="./dist/mfa-sdk.umd.js"></script>
    ```
 
-2. Inclua o container de autenticação no template HTML:
 
-   ```html
-   <div id="aegis-autenticacao"></div>
-   ```
 
-3. Inicialize a SDK e renderize o componente de autenticação:
+2. Inicialize a SDK e renderize o componente de autenticação:
 
    ```javascript
    const sdk = MfaSdk.init({
@@ -68,6 +62,12 @@ Execute `npm run test` para rodar os testes unitários e verificar a integridade
    componenteLogin.on("erro", () => {
      alert("Usuário ou senha inválido");
    });
+   ```
+
+3. Inclua o container de autenticação no template HTML:
+
+   ```html
+   <div id="aegis-autenticacao"></div>
    ```
 
 ### React (Next.js)
