@@ -7,7 +7,7 @@ import {
   nothing,
 } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
-import { getTheme } from "../themes";
+import { getTheme } from "../../themes";
 
 type LoginHandlerTypes =
   | "sucesso"
@@ -16,8 +16,8 @@ type LoginHandlerTypes =
   | "primeiro-acesso";
 
 interface ComponentLoginParams {
-  logo: string | undefined;
-  theme: string | undefined;
+  logo?: string;
+  theme?: string;
 }
 
 interface ComponenteLogin {
@@ -54,10 +54,10 @@ interface ComponenteLogin {
 
 @customElement("login-component")
 export class LoginComponent extends LitElement implements ComponenteLogin {
-  constructor({ logo = "", theme = "" }: ComponentLoginParams) {
+  constructor(props: ComponentLoginParams) {
     super();
-    this._logo = logo;
-    this._theme = theme;
+    this._logo = props?.logo || "";
+    this._theme = props?.theme || "";
   }
   @property({ type: String }) username = "";
   @property({ type: String }) password = "";
@@ -95,7 +95,7 @@ export class LoginComponent extends LitElement implements ComponenteLogin {
   protected firstUpdated(_changedProperties: PropertyValues): void {
     const theme = getTheme(this._theme);
     const styleSheet = theme.styleSheet as CSSStyleSheet;
-    this.shadowRoot!.adoptedStyleSheets.unshift(styleSheet);
+    this.shadowRoot!.adoptedStyleSheets?.unshift(styleSheet);
   }
 
   render() {

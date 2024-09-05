@@ -1,4 +1,4 @@
-import { LoginComponent } from "./components/login-component";
+import { LoginComponent } from "./components/login/login-component";
 import { changeComponentToFullScreen } from "./utils/change-component-to-full-screen";
 
 type MfaSdkEnv = "DEV" | "HML" | "PRD";
