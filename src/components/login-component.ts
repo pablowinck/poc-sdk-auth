@@ -1,11 +1,24 @@
-import { LitElement, TemplateResult, css, html, nothing } from "lit";
+import {
+  LitElement,
+  PropertyValues,
+  TemplateResult,
+  css,
+  html,
+  nothing,
+} from "lit";
 import { customElement, property, state } from "lit/decorators.js";
+import { getTheme } from "../themes";
 
 type LoginHandlerTypes =
   | "sucesso"
   | "erro"
   | "esqueci-minha-senha"
   | "primeiro-acesso";
+
+interface ComponentLoginParams {
+  logo: string | undefined;
+  theme: string | undefined;
+}
 
 interface ComponenteLogin {
   /**
@@ -41,15 +54,18 @@ interface ComponenteLogin {
 
 @customElement("login-component")
 export class LoginComponent extends LitElement implements ComponenteLogin {
-  constructor({ logo = "" } = {}) {
+  constructor({ logo = "", theme = "" }: ComponentLoginParams) {
     super();
     this._logo = logo;
+    this._theme = theme;
   }
   @property({ type: String }) username = "";
   @property({ type: String }) password = "";
 
   @state()
   private _logo: string = "";
+  @state()
+  private _theme: string = "";
 
   private _handlerSucesso: Function = () => {};
   private _handlerErro: Function = () => {};
@@ -74,6 +90,12 @@ export class LoginComponent extends LitElement implements ComponenteLogin {
 
   private _renderLogo(): TemplateResult<1> | typeof nothing {
     return this._logo ? html`<img src="${this._logo}" />` : nothing;
+  }
+
+  protected firstUpdated(_changedProperties: PropertyValues): void {
+    const theme = getTheme(this._theme);
+    const styleSheet = theme.styleSheet as CSSStyleSheet;
+    this.shadowRoot!.adoptedStyleSheets.unshift(styleSheet);
   }
 
   render() {
@@ -102,34 +124,36 @@ export class LoginComponent extends LitElement implements ComponenteLogin {
     `;
   }
 
-  static styles = css`
-    main {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 2rem;
-      text-align: center;
-    }
-    h1 {
-      color: var(--mfa-color-neutral-strong, white);
-    }
-    img {
-      width: 80px;
-    }
-    .login-form {
-      display: flex;
-      flex-direction: column;
-      width: 300px;
-      margin: auto;
-    }
-    .login-form input {
-      margin: 10px 0;
-      padding: 10px;
-      font-size: 1em;
-    }
-    .login-form button {
-      padding: 10px;
-      font-size: 1em;
-      cursor: pointer;
-    }
-  `;
+  static styles = [
+    css`
+      main {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 2rem;
+        text-align: center;
+      }
+      h1 {
+        color: var(--mfa-color-text, white);
+      }
+      img {
+        width: 80px;
+      }
+      .login-form {
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        margin: auto;
+      }
+      .login-form input {
+        margin: 10px 0;
+        padding: 10px;
+        font-size: 1em;
+      }
+      .login-form button {
+        padding: 10px;
+        font-size: 1em;
+        cursor: pointer;
+      }
+    `,
+  ];
 }

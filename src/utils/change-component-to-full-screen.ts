@@ -8,7 +8,7 @@ export function changeComponentToFullScreen(component: HTMLElement): void {
     width: "100%",
     height: "100%",
     zIndex: "9999",
-    backgroundColor: "var(--mfa-color-neutral-soft, rgba(0, 0, 0))", // fiquei em dúvida sobre o fundo, pois pode variar conforme o tema
+    backgroundColor: "var(--mfa-color-background, rgba(0, 0, 0))", // fiquei em dúvida sobre o fundo, pois pode variar conforme o tema
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
