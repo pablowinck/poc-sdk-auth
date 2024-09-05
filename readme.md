@@ -36,10 +36,8 @@ Execute `npm run test` para rodar os testes unitários e verificar a integridade
 1. Inclua o script gerado no build no seu arquivo HTML.
 
    ```html
-   <script src="./dist/mfa-sdk.umd.js"></script>
+   <script src="https://unpkg.com/poc-sdk-auth@latest/dist/mfa-sdk.umd.js"></script>
    ```
-
-
 
 2. Inicialize a SDK e renderize o componente de autenticação:
 
