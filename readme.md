@@ -70,7 +70,13 @@ Execute `npm run test` para rodar os testes unitários e verificar a integridade
 
 ### React (Next.js)
 
-1. Importe o SDK de autenticação:
+1. Instale a SDK como dependência:
+
+   ```bash
+   npm install poc-sdk-auth
+   ```
+
+2. Importe o SDK de autenticação:
 
    ```javascript
    useEffect(() => {
@@ -92,7 +98,7 @@ Execute `npm run test` para rodar os testes unitários e verificar a integridade
    }, []);
    ```
 
-2. Adicione o container de autenticação no JSX:
+3. Adicione o container de autenticação no JSX:
 
    ```jsx
    <div id="aegis-autenticacao"></div>
@@ -100,7 +106,13 @@ Execute `npm run test` para rodar os testes unitários e verificar a integridade
 
 ### Angular
 
-1. Inicialize o SDK e renderize o componente de autenticação no `ngOnInit`:
+1. Instale a SDK como dependência:
+
+   ```bash
+   npm install poc-sdk-auth
+   ```
+
+2. Inicialize o SDK e renderize o componente de autenticação no `ngOnInit`:
 
    ```typescript
    import { Component } from "@angular/core";
@@ -132,7 +144,7 @@ Execute `npm run test` para rodar os testes unitários e verificar a integridade
    }
    ```
 
-2. Inclua o container de autenticação no template HTML:
+3. Inclua o container de autenticação no template HTML:
 
    ```html
    <div id="aegis-autenticacao"></div>
