@@ -70,7 +70,7 @@ Execute `npm run test` para rodar os testes unitários e verificar a integridade
 
 ### React (Next.js)
 
-1. Importe o SDK de autenticação dinamicamente:
+1. Importe o SDK de autenticação:
 
    ```javascript
    useEffect(() => {
